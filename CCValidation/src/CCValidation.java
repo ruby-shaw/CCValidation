@@ -11,7 +11,10 @@ public class CCValidation
 	
 	public static void main(String[] args) 
 	{
-		//hello
+		for(int i = 0; i < 99; i++)
+		{
+			CCNumbers[i] 
+		}
 
 	}
 	
@@ -28,6 +31,10 @@ public class CCValidation
 	public static int doubleNumbers()
 	{
 		int doubles = 0; 
+		for (int i = 0; i <= 16; i+=2)
+		{
+			doubles = 
+		}
 		return doubles;
 	}
 	// 
