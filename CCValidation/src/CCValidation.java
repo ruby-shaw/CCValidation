@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,31 +12,46 @@ public class CCValidation
 	
 	public static void main(String[] args) 
 	{
+
 //		Scanner user = new Scanner(System.in);
 //		System.out.println("Please enter a 16 digit number");
 //		String cardNumber = user.nextLine(); 
 //		number = cardNumber; 
 		
 		
-//		File file = new File("CCnumbers.txt");
-//		Scanner scanner = new Scanner(file);
-//		
-//		while(scanner.hasNextLine())
-//		{
-//			String number = scanner.nextLine();
-//		}
-		
-		
-		isValid(number); 
-		
-		if (isValid(number) == true)
+		try 
 		{
-			System.out.println("That number is valid!");
+        File file = new File("CCnumbers");
+        Scanner scanner = new Scanner(file);
+
+        int lineNum = 1;
+        while (scanner.hasNextLine()) 
+        {
+            String number = scanner.nextLine().trim();
+
+            if (number.length() != 16 || !number.matches("\\d{16}")) 
+            {
+                System.out.println("Line " + lineNum + ": INVALID INPUT ");
+            } 
+            else 
+            {
+                boolean isValid = isValid(number);
+                System.out.println("Line " + lineNum + ": " + (isValid ? "VALID" : "INVALID"));
+            }
+            lineNum++;
+        }
+
+        scanner.close();
 		}
-		else
+		catch (FileNotFoundException e) 
 		{
-			System.out.println("That number is invalid!");
+        System.out.println("file not found. Check the name and path.");
+        
+        e.printStackTrace();
 		}
+		
+		 
+		
 		
 		
 
@@ -75,16 +91,6 @@ public class CCValidation
 		
 		
 	}
-	
-	
-	
-	
-	
-//	public static ArrayList<Integer> CCNumbers = new ArrayList<>();
-//	public static void getCCNumbers() throws IOException
-//	{
-//		
-//	}
 	
 
 }
