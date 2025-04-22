@@ -7,36 +7,84 @@ import java.util.Scanner;
 
 public class CCValidation 
 {
-	public static int CCNumbers[] = new int [99];
+	public static String number = "0"; 
 	
 	public static void main(String[] args) 
 	{
-		for(int i = 0; i < 99; i++)
+//		Scanner user = new Scanner(System.in);
+//		System.out.println("Please enter a 16 digit number");
+//		String cardNumber = user.nextLine(); 
+//		number = cardNumber; 
+		
+		
+//		File file = new File("CCnumbers.txt");
+//		Scanner scanner = new Scanner(file);
+//		
+//		while(scanner.hasNextLine())
+//		{
+//			String number = scanner.nextLine();
+//		}
+		
+		
+		isValid(number); 
+		
+		if (isValid(number) == true)
 		{
-			CCNumbers[i] 
+			System.out.println("That number is valid!");
 		}
+		else
+		{
+			System.out.println("That number is invalid!");
+		}
+		
+		
 
 	}
 	
-	public static void getCCNumbers() throws IOException
+	public static boolean isValid(String number)
 	{
-		Scanner myFile = new Scanner(new File("CCnumbers.txt"));
+		boolean isValid = false;
+		int sum = 0;
 		
-		while(myFile.hasNext())
+		String [] array = number.split("");
+		
+		for (int i = 0; i < number.length(); i++)
 		{
-//			CCNumbers{
+			int leftIndex = i; 
+			int dub = Integer.parseInt(number.substring(leftIndex, leftIndex +1));
+			
+			if (i % 2 == 0)
+			{
+				dub *= 2;
+				
+				if(dub > 9)
+				{
+					dub -= 9; 
+				}
+			}
+			
+			sum += dub; 
 		}
+		
+		if(sum %10 == 0)
+		{
+			isValid = true; 
+		}
+		return isValid;
+	
+		
+		
 	}
 	
-	public static int doubleNumbers()
-	{
-		int doubles = 0; 
-		for (int i = 0; i <= 16; i+=2)
-		{
-			doubles = 
-		}
-		return doubles;
-	}
-	// 
+	
+	
+	
+	
+//	public static ArrayList<Integer> CCNumbers = new ArrayList<>();
+//	public static void getCCNumbers() throws IOException
+//	{
+//		
+//	}
+	
 
 }
